@@ -36,3 +36,16 @@ def stacked_bar(df, colors, figsize=(12, 8), y_lim=(0, 2.5)):
     plt.xlabel('Year', fontsize=16)
     plt.ylabel('Tone Score', fontsize=16)
     plt.title('Stacked Bar Graph', fontsize=18, fontweight='bold')
+
+
+def tone_chunks(df, title, color, figsize=(12, 6)):
+    x = [n / 40 for n in list(range(1, 41))]
+    plt.figure(figsize=figsize)
+    for n in df.index:
+        plt.plot(x, df.ix[n], color='k', alpha=0.05)
+        plt.scatter(x, df.ix[n], color='k', alpha=0.05)
+    plt.plot(x, df.mean(), color=color)
+    plt.scatter(x, df.mean(), color=color)
+    plt.xlabel('Speech Duration', fontsize=16)
+    plt.ylabel('Score', fontsize=16)
+    plt.title(title, fontsize=18, fontweight='bold')
